@@ -4,7 +4,8 @@ LABEL maintainer "christophe@labouisse.org"
 
 ENV DOCKER_PRIVILEGED=true \
     RUNNER_EXECUTOR=docker \
-    DOCKER_IMAGE=docker:git
+    DOCKER_IMAGE=docker:git \
+    DOCKER_VOLUMES=/var/run/docker.sock:/var/run/docker.sock
 
 COPY patch/entrypoint.patch /
 

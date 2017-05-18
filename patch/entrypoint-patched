@@ -21,6 +21,12 @@ fi
 if [ ! -f "${CONFIG_FILE}" ]; then
   # create the configuration file from the environment
   gitlab-runner register -n
+  if [ -n "${RUNNER_ENV}" -a -n "${RUNNER_ENV_EXTRA}" ]; then
+    sed -i"" -e 's/environment *= *\[\(.*\)\]/environment = [\1, '"${RUNNER_ENV_EXTRA}"']/' "${CONFIG_FILE}"
+  fi
+  if [ -n "${DOCKER_VOLUMES}" -a -n "${DOCKER_VOLUMES_EXTRA}" ]; then
+    sed -i"" -e 's/volumes *= *\[\(.*\)\]/volumes = [\1, '"${DOCKER_VOLUMES_EXTRA}"']/' "${CONFIG_FILE}"
+  fi
 fi
 
 # launch gitlab-ci-multi-runner passing all arguments

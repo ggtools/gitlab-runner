@@ -1,12 +1,18 @@
---- entrypoint-org	2017-05-18 04:42:48.000000000 +0100
-+++ entrypoint-patched	2017-05-18 04:45:11.000000000 +0100
-@@ -18,5 +18,10 @@
+--- entrypoint-org	2017-05-18 05:42:48.000000000 +0200
++++ entrypoint-patched	2017-05-18 23:57:07.000000000 +0200
+@@ -18,5 +18,16 @@
    cmp -s "${CA_CERTIFICATES_PATH}" "${LOCAL_CA_PATH}" || update_ca
  fi
  
 +if [ ! -f "${CONFIG_FILE}" ]; then
 +  # create the configuration file from the environment
 +  gitlab-runner register -n
++  if [ -n "${RUNNER_ENV}" -a -n "${RUNNER_ENV_EXTRA}" ]; then
++    sed -i"" -e 's/environment *= *\[\(.*\)\]/environment = [\1, '"${RUNNER_ENV_EXTRA}"']/' "${CONFIG_FILE}"
++  fi
++  if [ -n "${DOCKER_VOLUMES}" -a -n "${DOCKER_VOLUMES_EXTRA}" ]; then
++    sed -i"" -e 's/volumes *= *\[\(.*\)\]/volumes = [\1, '"${DOCKER_VOLUMES_EXTRA}"']/' "${CONFIG_FILE}"
++  fi
 +fi
 +
  # launch gitlab-ci-multi-runner passing all arguments
