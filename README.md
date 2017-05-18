@@ -1,6 +1,6 @@
 # gitlab-runner
 
-A derived version of [gitlab-runner](https://hub.docker.com/r/gitlab/gitlab-runner/) taylored for running as a Docker swarm service.
+A derived version of [gitlab-runner](https://hub.docker.com/r/gitlab/gitlab-runner/) tailored for running as a Docker swarm service.
 
 Based on the alpine tag, it basically adds an automatic registration if the config file does not exists. The registration will be performed non-interactively using environment variables to set various options.
 
