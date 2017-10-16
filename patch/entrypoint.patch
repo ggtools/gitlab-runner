@@ -1,5 +1,5 @@
---- entrypoint-org	2017-05-18 05:42:48.000000000 +0200
-+++ entrypoint-patched	2017-05-18 23:57:07.000000000 +0200
+--- entrypoint
++++ /data/patch/entrypoint-patched
 @@ -18,5 +18,16 @@
    cmp -s "${CA_CERTIFICATES_PATH}" "${LOCAL_CA_PATH}" || update_ca
  fi
@@ -15,5 +15,5 @@
 +  fi
 +fi
 +
- # launch gitlab-ci-multi-runner passing all arguments
- exec gitlab-ci-multi-runner "$@"
+ # launch gitlab-runner passing all arguments
+ exec gitlab-runner "$@"

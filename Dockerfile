@@ -1,4 +1,4 @@
-FROM gitlab/gitlab-runner:alpine
+FROM gitlab/gitlab-runner:alpine-v10.0.2
 
 LABEL maintainer "christophe@labouisse.org"
 
